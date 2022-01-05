@@ -9,6 +9,9 @@ import android.webkit.WebViewClient
 import android.widget.Toast
 
 class ShareCatchWebActivity : AppCompatActivity() {
+
+    private lateinit var webView: WebView
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_share_catch_web)
@@ -18,6 +21,7 @@ class ShareCatchWebActivity : AppCompatActivity() {
     }
 
     private fun initViews() {
+        webView = findViewById(R.id.wv_load_url)
         val intent = intent
         val action = intent.action
         val type = intent.type
@@ -31,7 +35,6 @@ class ShareCatchWebActivity : AppCompatActivity() {
     }
 
     private fun handleSendURL(intent: Intent) {
-        val webView = findViewById<WebView>(R.id.wv_load_url)
         webView.webViewClient = WebViewClient()
         val sharedURL = intent.getStringExtra(Intent.EXTRA_TEXT)
         if (URLUtil.isValidUrl(sharedURL))
